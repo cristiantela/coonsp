@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Exemplo 01 - Coonsp</title>
+	<script src="https://raw.githubusercontent.com/mathues/coonsp/master/v-1/coonsp.js" type="text/javascript"></script>
+	<style>
+	body{
+		margin:50px;
+		background-color:#333333;
+		color:#FFFFFF;
+	}
+	canvas{
+		border:5px solid 5px;
+		border-radius:5px;
+		background-color:#FFFFFF;
+	}
+	</style>
+</head>
+
+<body>
+<center>
+<h1>Uhsauhsa</h1>
+<canvas id="game" width="800" height="400">Atualize seu navegador....</canvas>
+</center>
+<script>
+var canvas=document.getElementById("game");
+var coonsp=new Coonsp(canvas);
+var teclas=[];
+coonsp.frame(function(c){
+	c.add({
+		name:"principal",
+		x:50,
+		y:50,
+		ponto:"center-center",
+		w:50,
+		h:50,
+		forceX:0,
+		forceY:0
+	});
+	c.frame(function(c){
+		c.edit({
+			name:"principal",
+			forceX:(c.get("principal").forceX*0.95555,
+			forceY:1+(c.get("principal").forceY*1.05)
+		});
+		c.edit({
+			name:"principal",
+			x:c.get("principal").forceX,
+			y:c.get("principal").forceY
+		},true);
+	},"esse");
+	c.before("esse");
+},"newGame");
+coonsp.before("newGame");
+coonsp.start();
+window.onkeydown=function(e){
+	teclas[e.keyCode]=true;
+}
+window.onkeydown=function(e){
+	if(teclas[e.keyCode]){
+		delete teclas[e.keyCode];
+	}
+}
+</script>
+</body>
+</html>
